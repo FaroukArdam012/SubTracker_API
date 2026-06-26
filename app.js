@@ -7,6 +7,7 @@ import connecToDB from './Database/mongodb.js';
 import errorMiddleware from './middlewares/errorMiddleware.js';
 import cookieParser from 'cookie-parser';
 import arcjetMiddleware from './middlewares/arcjetMiddleware.js';
+import wfRouter from './routes/workflowRoutes.js';
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(arcjetMiddleware)
 app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/user',userRouter);
 app.use('/api/v1/subscription',subRouter);
+app.use('/api/v1/workflow',wfRouter);
 app.use(errorMiddleware)
 app.get("/", (req,res)=>{
     res.send("Welcome to Subscription API");

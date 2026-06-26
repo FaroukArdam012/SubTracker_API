@@ -5,6 +5,7 @@ const errorMiddleware= function(err, req,res,next){
         let error = {...err};
         error.message=err.message;
         console.error(err);
+        console.error(err.stack);
         //Mongoose bad ObjectID
         if(err.name==='CastError'){
             const message='Resource not found';

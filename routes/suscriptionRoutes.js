@@ -1,21 +1,19 @@
 import {Router} from "express";
+import { authorize } from "../middlewares/authMiddleware.js";
+import { createSub, getUserSub } from "../controller/subController.js";
 const subRouter=Router();
 
-subRouter.get('/subs',(req,res)=>{
+subRouter.get('/',(req,res)=>{
     res.send({
         title: "GETS all subs"
     })
 })
-subRouter.get('/sub/:id',(req,res)=>{
+subRouter.get('/:id',(req,res)=>{
     res.send({
         title: "GETS a sub"
     })
 })
-subRouter.post('/sub',(req,res)=>{
-    res.send({
-        title: "CREATES a sub"
-    })
-})
+subRouter.post('/sub',authorize, createSub)
 subRouter.patch('/sub/:id',(req,res)=>{
     res.send({
         title: "UPDATES a sub"
@@ -26,11 +24,7 @@ subRouter.delete('/sub/:id',(req,res)=>{
         title: "DELETES a sub"
     })
 })
-subRouter.get('/user/:id',(req,res)=>{
-    res.send({
-        title: "GET all user subscriptions"
-    })
-})
+subRouter.get('/user/:id',authorize, getUserSub)
 subRouter.put('/:id/cancel',(req,res)=>{
     res.send({
         title: "CANCEL all subcriptions"
