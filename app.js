@@ -13,10 +13,10 @@ import wfRouter from './routes/workflowRoutes.js';
 const app = express();
 app.use(express.json())
 app.use(cookieParser())
-app.use(arcjetMiddleware)
-app.use('/api/v1/auth',authRouter);
-app.use('/api/v1/user',userRouter);
-app.use('/api/v1/subscription',subRouter);
+
+app.use('/api/v1/auth',arcjetMiddleware,authRouter);
+app.use('/api/v1/user',arcjetMiddleware,userRouter);
+app.use('/api/v1/subscription',arcjetMiddleware,subRouter);
 app.use('/api/v1/workflow',wfRouter);
 app.use(errorMiddleware)
 app.get("/", (req,res)=>{

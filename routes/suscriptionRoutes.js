@@ -1,6 +1,6 @@
 import {Router} from "express";
 import { authorize } from "../middlewares/authMiddleware.js";
-import { createSub, getUserSub } from "../controller/subController.js";
+import { createSub, deleteSub, getUserSub } from "../controller/subController.js";
 const subRouter=Router();
 
 subRouter.get('/',(req,res)=>{
@@ -19,11 +19,7 @@ subRouter.patch('/sub/:id',(req,res)=>{
         title: "UPDATES a sub"
     })
 })
-subRouter.delete('/sub/:id',(req,res)=>{
-    res.send({
-        title: "DELETES a sub"
-    })
-})
+subRouter.delete('/sub/:id',authorize, deleteSub)
 subRouter.get('/user/:id',authorize, getUserSub)
 subRouter.put('/:id/cancel',(req,res)=>{
     res.send({
