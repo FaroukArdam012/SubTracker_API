@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { getAllUsers, getUserById } from '../controller/userController.js';
+import { getAllUsers, getUserById, deleteUser } from '../controller/userController.js';
 import { authorize } from '../middlewares/authMiddleware.js';
 const userRouter = Router();
 
@@ -13,10 +13,6 @@ userRouter.patch('/update/:id',(req,res)=>{
         title: "UPDATE user info."
     })
 })
-userRouter.delete('/delete/:id', (req,res)=>{
-    res.send({
-        title: "DELETE user"
-    })
-})
+userRouter.delete('/delete/:id', deleteUser)
 
 export default userRouter;

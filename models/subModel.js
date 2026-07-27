@@ -10,7 +10,7 @@ const subSchema= new mongoose.Schema({
     price:{
         type: Number,
         required:[true,"A price of the subscription must be added"],
-        min:[0, 'Price must be higher than 0'],
+        min:[1, 'Price must be higher than 0'],
     },
     currency:{
         type: String,
